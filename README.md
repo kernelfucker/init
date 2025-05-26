@@ -7,6 +7,8 @@ $ clang init.c -o init -static
 # rootfs, qemu etc..
 $ mkdir --parents rootfs/{bin,proc}
 
+$ cp init rootfs/
+
 $ doas cp /bin/sh rootfs/bin/
 
 $ cd rootfs/

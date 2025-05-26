@@ -9,7 +9,7 @@ $ mkdir --parents rootfs/{bin,proc}
 
 $ cp init rootfs/
 
-$ doas cp /bin/sh rootfs/bin/
+$ doas cp /bin/busybox rootfs/bin/sh
 
 $ cd rootfs/
 

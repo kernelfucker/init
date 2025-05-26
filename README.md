@@ -13,6 +13,8 @@ $ cd rootfs/
 
 $ find . -print0 | cpio --null -v -o --format=newc | gzip > ../initramfs.cpio.gz
 
+$ cd ../
+
 $ qemu-system-x86_64 -kernel /boot/vmlinuz-linux -initrd initramfs.cpio.gz -nographic -append "console=ttyS0 init=/init"
 
 # stat

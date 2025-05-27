@@ -1,5 +1,5 @@
 # init
-minimal init for unix-like systems
+minimal init for x86_64 unix-like systems
 
 # compile
 $ clang init.c -o init -static

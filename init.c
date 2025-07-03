@@ -2,11 +2,14 @@
 /* init - minimal init for x86_64 unix-like systems */
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <string.h>
 #include <signal.h>
+#include <unistd.h>
 #include <sys/mount.h>
 #include <sys/wait.h>
 #include <sys/syscall.h>
+
+#define version "0.2"
 
 void schl(int sig){
 	while(waitpid(-1, NULL, WNOHANG) > 0);
@@ -22,9 +25,33 @@ void sys_reboot(int sig){
 	syscall(169, 0xfee1dead, 672274793, 0x01234567, NULL);
 }
 
-int main(void){
+void help(const char *s){
+	printf("usage: %s [options]..\n", s);
+	printf("options:\n");
+	printf("  -v	show version information\n");
+	printf("  -h	display this\n");
+}
+
+int main(int argc, char *argv[]){
+	if(argc >= 2){
+		if(strcmp(argv[1], "-h") == 0){
+			help(argv[0]);
+			return 0;
+		}
+
+		if(strcmp(argv[1], "-v") == 0){
+			printf("init-%s\n", version);
+			return 0;
+		}
+
+		printf("usage: %s [options]\n", argv[0]);
+		printf("try '%s -h' for more information\n", argv[0]);
+
+		return 1;
+	}
+
 	if(getpid() != 1){
-		write(2, "PID 1 needed\n", 12);
+		write(2, "PID 1 needed\n", 14);
 		_exit(1);
 	}
 

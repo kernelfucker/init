@@ -2,7 +2,7 @@
 minimal init for x86_64 unix-like systems
 
 # compile
-$ clang init.c -o init -static
+$ clang init.c -o init -Os -s -static
 
 # rootfs, qemu etc..
 $ mkdir --parents rootfs/{bin,proc}

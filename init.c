@@ -8,24 +8,18 @@
 #include <sys/wait.h>
 #include <sys/syscall.h>
 
-#define scrb 169
-#define poweroff 0x04321fedc
-#define reboot 0x01234567
-#define magic1 0xfee1dead
-#define magic2 672274793
-
 void schl(int sig){
 	while(waitpid(-1, NULL, WNOHANG) > 0);
 }
 
 void sys_poweroff(int sig){
 	sync();
-	syscall(scrb, magic1, magic2, poweroff, NULL);
+	syscall(169, 0xfee1dead, 672274793, 0x04321fedc, NULL);
 }
 
 void sys_reboot(int sig){
 	sync();
-	syscall(scrb, magic1, magic2, reboot, NULL);
+	syscall(169, 0xfee1dead, 672274793, 0x01234567, NULL);
 }
 
 int main(void){

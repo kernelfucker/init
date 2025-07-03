@@ -1,3 +1,5 @@
+/* See LICENSE file for license details */
+/* init - minimal init for x86_64 unix-like systems */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
